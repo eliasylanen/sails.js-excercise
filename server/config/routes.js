@@ -44,6 +44,10 @@ module.exports.routes = {
     controller: 'BoardController',
     action: 'createBoard',
   },
+  'DELETE /boards/:boardId': {
+    controller: 'BoardController',
+    action: 'deleteBoard',
+  },
 
   /***************************************************************************
   *                                                                          *

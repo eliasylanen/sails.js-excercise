@@ -8,4 +8,13 @@ module.exports = {
         res.badRequest(e);
       });
   },
+  deleteBoard: (req, res) => {
+    Board.destroy({ id: req.param('boardId') })
+      .then(data => {
+        res.ok(data);
+      })
+      .catch(e => {
+        res.badRequest();
+      });
+  },
 };

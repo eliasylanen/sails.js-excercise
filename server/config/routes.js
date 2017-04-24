@@ -35,13 +35,14 @@ module.exports.routes = {
     controller: 'FooController',
     action: 'bar',
   },
-  'POST /foobar': {
-    controller: 'FooController',
-    action: 'foobar',
-  },
   'PUT /boards/:boardId': {
     controller: 'FooController',
     action: 'editBoard',
+  },
+
+  'POST /boards': {
+    controller: 'BoardController',
+    action: 'createBoard',
   },
 
   /***************************************************************************

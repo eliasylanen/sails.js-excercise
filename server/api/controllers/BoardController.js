@@ -49,7 +49,7 @@ function deleteBoard(req, res) {
 function editBoard(req, res) {
   Board.findOne(req.param('boardId').toString())
     .then(data => {
-      !data || data === []
+      return !data || data === []
         ? res.notFound('Nothing found')
         : Board.update(data.id.toString(), { name: req.body.name })
             .then(data => {

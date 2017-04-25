@@ -1,4 +1,12 @@
-const findAllBoards = (req, res) => {
+module.exports = {
+  findAllBoards,
+  findBoard,
+  createBoard,
+  deleteBoard,
+  editBoard,
+};
+
+function findAllBoards(req, res) {
   Board.find({})
     .then(data => {
       res.ok(data);
@@ -6,8 +14,9 @@ const findAllBoards = (req, res) => {
     .catch(e => {
       res.badRequest(e);
     });
-};
-const findBoard = (req, res) => {
+}
+
+function findBoard(req, res) {
   Board.findOne(req.param('boardId').toString())
     .then(data => {
       res.ok(data);
@@ -15,8 +24,9 @@ const findBoard = (req, res) => {
     .catch(e => {
       res.badRequest(e);
     });
-};
-const createBoard = (req, res) => {
+}
+
+function createBoard(req, res) {
   Board.create({ name: req.body.name })
     .then(data => {
       res.created(data);
@@ -24,8 +34,9 @@ const createBoard = (req, res) => {
     .catch(e => {
       res.badRequest(e.invalidAttributes);
     });
-};
-const deleteBoard = (req, res) => {
+}
+
+function deleteBoard(req, res) {
   Board.destroy({ id: req.param('boardId') })
     .then(data => {
       res.ok(data);
@@ -33,8 +44,9 @@ const deleteBoard = (req, res) => {
     .catch(e => {
       res.badRequest(e);
     });
-};
-const editBoard = (req, res) => {
+}
+
+function editBoard(req, res) {
   Board.findOne(req.param('boardId').toString())
     .then(data => {
       !data || data === []
@@ -50,12 +62,4 @@ const editBoard = (req, res) => {
     .catch(e => {
       res.badRequest(e);
     });
-};
-
-module.exports = {
-  findAllBoards,
-  findBoard,
-  createBoard,
-  deleteBoard,
-  editBoard,
-};
+}

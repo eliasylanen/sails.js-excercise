@@ -31,15 +31,14 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /foo': {
-    controller: 'FooController',
-    action: 'bar',
+  'GET /boards': {
+    controller: 'BoardController',
+    action: 'findAllBoards',
   },
-  'PUT /boards/:boardId': {
-    controller: 'FooController',
-    action: 'editBoard',
+  'GET /boards/:boardId': {
+    controller: 'BoardController',
+    action: 'findBoard',
   },
-
   'POST /boards': {
     controller: 'BoardController',
     action: 'createBoard',
@@ -47,6 +46,10 @@ module.exports.routes = {
   'DELETE /boards/:boardId': {
     controller: 'BoardController',
     action: 'deleteBoard',
+  },
+  'PUT /boards/:boardId': {
+    controller: 'BoardController',
+    action: 'editBoard',
   },
 
   /***************************************************************************

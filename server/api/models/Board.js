@@ -5,5 +5,9 @@ module.exports = {
       required: true,
       unique: true,
     },
+    notes: {
+      collection: 'note',
+      via: 'owner',
+    },
   },
 };

@@ -9,7 +9,9 @@ module.exports = {
 function findAllBoards(req, res) {
   Board.find({})
     .then(data => {
-      res.ok(data);
+      !data || data.join() === [].join()
+        ? res.notFound('No boards found')
+        : res.ok(data);
     })
     .catch(e => {
       res.badRequest(e);
@@ -19,7 +21,7 @@ function findAllBoards(req, res) {
 function findBoard(req, res) {
   Board.findOne(req.param('boardId').toString())
     .then(data => {
-      res.ok(data);
+      !data ? res.notFound('Board not found') : res.ok(data);
     })
     .catch(e => {
       res.badRequest(e);
@@ -32,14 +34,19 @@ function createBoard(req, res) {
       res.created(data);
     })
     .catch(e => {
-      res.badRequest(e.invalidAttributes);
+      res.badRequest(e);
     });
 }
 
 function deleteBoard(req, res) {
-  Board.destroy({ id: req.param('boardId') })
+  const deleteBoard = Board.destroy({ id: req.param('boardId') });
+  const deleteNotes = Note.destroy({ owner: req.param('boardId') });
+
+  Promise.all([deleteBoard, deleteNotes])
     .then(data => {
-      res.ok(data);
+      !data || data.join() === [[], []].join()
+        ? res.notFound('Board not found, someone might have deleted it already')
+        : res.ok(data);
     })
     .catch(e => {
       res.badRequest(e);
@@ -49,14 +56,14 @@ function deleteBoard(req, res) {
 function editBoard(req, res) {
   Board.findOne(req.param('boardId').toString())
     .then(data => {
-      !data || data === []
-        ? res.notFound('Nothing found')
+      return !data || data === []
+        ? res.notFound('Board not found, someone might have deleted it')
         : Board.update(data.id.toString(), { name: req.body.name })
             .then(data => {
               res.ok(data);
             })
             .catch(e => {
-              res.badRequest(e.invalidAttributes);
+              res.badRequest(e);
             });
     })
     .catch(e => {

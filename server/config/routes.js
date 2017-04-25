@@ -31,6 +31,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  /**
+   * Board endpoints
+   */
   'GET /boards': {
     controller: 'BoardController',
     action: 'findAllBoards',
@@ -50,6 +53,26 @@ module.exports.routes = {
   'PUT /boards/:boardId': {
     controller: 'BoardController',
     action: 'editBoard',
+  },
+
+  /**
+   * Note endpoints
+   */
+  'GET /notes/:boardId': {
+    controller: 'NoteController',
+    action: 'findNotes',
+  },
+  'POST /notes': {
+    controller: 'NoteController',
+    action: 'createNote',
+  },
+  'DELETE /notes/:noteId': {
+    controller: 'NoteController',
+    action: 'deleteNote',
+  },
+  'PUT /notes/:noteId': {
+    controller: 'NoteController',
+    action: 'editNote',
   },
 
   /***************************************************************************

@@ -66,7 +66,7 @@ module.exports.routes = {
     controller: 'NoteController',
     action: 'createNote',
   },
-  'DELETE /notes/:boardId': {
+  'DELETE /notes/:noteId': {
     controller: 'NoteController',
     action: 'deleteNote',
   },

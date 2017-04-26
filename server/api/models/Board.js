@@ -10,4 +10,10 @@ module.exports = {
       via: 'owner',
     },
   },
+
+  beforeDestroy: (criteria, next) => {
+    Note.destroy({ owner: criteria.where.id })
+      .then(() => next())
+      .catch(e => next(e));
+  },
 };

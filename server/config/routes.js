@@ -75,6 +75,11 @@ module.exports.routes = {
     action: 'editNote',
   },
 
+  /**
+   * 404
+   */
+  '/*': (req, res) => res.notFound('404'),
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

@@ -11,9 +11,12 @@ module.exports = {
     },
   },
 
-  beforeDestroy: (criteria, next) => {
-    Note.destroy({ owner: criteria.where.id })
-      .then(() => next())
-      .catch(e => next(e));
+  beforeDestroy: async (criteria, next) => {
+    try {
+      await Note.destroy({ owner: criteria.where.id });
+      return next();
+    } catch (error) {
+      return next(error);
+    }
   },
 };

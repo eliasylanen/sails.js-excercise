@@ -6,16 +6,6 @@ module.exports = {
   editBoard,
 };
 
-// function findAllBoards(req, res) {
-//   Board.find({})
-//     .then(data => {
-//       return !data || data.join() === [].join()
-//         ? res.notFound('No boards found')
-//         : res.ok(data);
-//     })
-//     .catch(e => res.badRequest(e));
-// }
-
 async function findAllBoards(req, res) {
   try {
     const data = await Board.find({});
@@ -26,12 +16,6 @@ async function findAllBoards(req, res) {
     return res.badRequest(error);
   }
 }
-
-// function findBoard(req, res) {
-//   Board.findOne(req.param('boardId')
-//     .then(data => (!data ? res.notFound('Board not found') : res.ok(data)))
-//     .catch(e => res.badRequest(e));
-// }
 
 async function findBoard(req, res) {
   try {
@@ -44,12 +28,6 @@ async function findBoard(req, res) {
   }
 }
 
-// function createBoard(req, res) {
-//   Board.create({ name: req.body.name })
-//     .then(data => res.created(data))
-//     .catch(e => res.badRequest(e));
-// }
-
 async function createBoard(req, res) {
   try {
     const data = await Board.create({ name: req.body.name });
@@ -59,12 +37,6 @@ async function createBoard(req, res) {
   }
 }
 
-// function deleteBoard(req, res) {
-//   Board.destroy({ id: req.param('boardId') })
-//     .then(data => res.ok(data))
-//     .catch(e => res.badRequest(e));
-// }
-
 async function deleteBoard(req, res) {
   try {
     const data = await Board.destroy(req.param('boardId').toString());
@@ -73,12 +45,6 @@ async function deleteBoard(req, res) {
     return res.badRequest(error);
   }
 }
-
-// function editBoard(req, res) {
-//   Board.update({ id: req.param('boardId') }, { name: req.body.name })
-//     .then(data => res.ok(data))
-//     .catch(e => res.badRequest(e));
-// }
 
 async function editBoard(req, res) {
   try {

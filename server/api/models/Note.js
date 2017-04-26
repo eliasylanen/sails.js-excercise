@@ -19,7 +19,6 @@ module.exports = {
   beforeCreate: async (values, next) => {
     try {
       const data = await Board.findOne(values.owner.toString());
-      console.log(data);
       return !data || _.isEmpty(data) || data.id !== values.owner
         ? next('Target board not found')
         : next();

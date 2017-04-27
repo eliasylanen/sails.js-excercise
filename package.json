@@ -1,14 +1,16 @@
 {
   "name": "post-it",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Elias Ylänen",
   "license": "ISC",
-  "dependencies": {
-    "sails": "^0.12.13"
+  "dependencies": {},
+  "devDependencies": {
+    "sails": "^0.12.13",
+    "create-project": "^1.2.1"
   }
 }
